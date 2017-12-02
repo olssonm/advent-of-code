@@ -2,10 +2,10 @@
 
     /**
      * @param  string $puzzle
-     * @param  integer $offset
-     * @return integer
+     * @param  int $offset
+     * @return int
      */
-    function solve($puzzle, $offset = null)
+    function solve(string $puzzle, int $offset = null) : int
     {
         $sum = 0;
         $puzzle = str_split($puzzle);

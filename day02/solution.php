@@ -1,18 +1,23 @@
 <?php
 
-    function solve($puzzle, $type = 'diff')
+    /**
+     * @param  string $puzzle
+     * @param  string $typ
+     * @return int
+     */
+    function solve(string $puzzle, string $type = null) : int
     {
         $checksum = 0;
         $rows = explode(PHP_EOL, $puzzle);
 
         foreach ($rows as $row) {
             switch ($type) {
-                case 'diff':
-                    $checksum += diff($row);
-                    break;
-
                 case 'divisible':
                     $checksum += divisible($row);
+                    break;
+
+                default:
+                    $checksum += diff($row);
                     break;
             }
         }
@@ -20,7 +25,12 @@
         return $checksum;
     }
 
-    function diff($row)
+    /**
+     * Return the sum of max-min
+     * @param  string $row
+     * @return int
+     */
+    function diff(string $row) : int
     {
         $cells = preg_split('/\s+/', $row);
         $max = max($cells);
@@ -29,7 +39,12 @@
         return $max-$min;
     }
 
-    function divisible($row)
+    /**
+     * Return the "divided divisible" cells
+     * @param  string $row
+     * @return int
+     */
+    function divisible(string $row) : int
     {
         $cells = preg_split('/\s+/', $row);
         foreach ($cells as $pass1) {
@@ -45,3 +60,4 @@
 
     echo sprintf("Solution Part 1: %s \n", solve($input)); // 32121
     echo sprintf("Solution Part 2: %s \n", solve($input, 'divisible')); // 197
+    exit();
