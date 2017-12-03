@@ -2,7 +2,7 @@
 
     /**
      * @param  string $puzzle
-     * @param  string $typ
+     * @param  string $type
      * @return int
      */
     function solve(string $puzzle, string $type = null) : int
