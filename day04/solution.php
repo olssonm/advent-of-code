@@ -7,31 +7,20 @@
      */
     function solve(string $puzzle, bool $doubleSecurity = false) : int
     {
-        $valid = 0;
+        $invalid = 0;
         $passphrases = explode(PHP_EOL, $puzzle);
 
         foreach ($passphrases as $passphrase) {
-            if (str_word_count($passphrase) == checkUniqueWords($passphrase)) {
-                if ($doubleSecurity && checkAnagram($passphrase)) {
-                    continue;
-                }
-                $valid ++;
+            $words = explode(' ', $passphrase);
+
+            if (count($words) != count(array_unique($words))) {
+                $invalid++;
+            } elseif ($doubleSecurity && containsAnagram($passphrase)) {
+                $invalid++;
             }
         }
 
-        return $valid;
-    }
-
-    /**
-     * Check how many unique words a phrase contains
-     * @param  string $passphrase
-     * @return int
-     */
-    function checkUniqueWords(string $passphrase) : int
-    {
-        $passphrase = explode(' ', $passphrase);
-        $words = array_unique($passphrase);
-        return count($words);
+        return count($passphrases) - $invalid;
     }
 
     /**
@@ -39,20 +28,19 @@
      * @param  string $passphrase
      * @return bool
      */
-    function checkAnagram(string $passphrase) : bool
+    function containsAnagram(string $passphrase) : bool
     {
-        $detected = 0;
         $passphrase = explode(' ', $passphrase);
 
         for ($i=0; $i < count($passphrase); $i++) {
             for ($j=0; $j < count($passphrase); $j++) {
                 if (count_chars($passphrase[$i], 1) === count_chars($passphrase[$j], 1) && $i != $j) {
-                    $detected ++;
+                    return true;
                 }
             }
         }
 
-        return ($detected > 0);
+        return false;
     }
 
     // Use rtrim to remove new line, else we get an additional element
