@@ -2,7 +2,7 @@
 
     /**
      * @param  string  $puzzle
-     * @param  boolean $doubleSecurity
+     * @param  bool $doubleSecurity
      * @return int
      */
     function solve(string $puzzle, bool $doubleSecurity = false) : int
