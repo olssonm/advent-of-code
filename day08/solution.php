@@ -21,7 +21,7 @@
                 $registerArr[$registerComp] = 0;
             }
 
-            $operation = "$registerArr[$registerComp] $condition $valueComp";
+            $operation = "$registerArr[$registerComp] $condition $valueComp"; // Using eval() =(
             if (eval("return ($operation);")) {
                 $registerArr[$register] = calculate($registerArr[$register], $value, $task);
                 if ($registerArr[$register] > $max) {
@@ -54,7 +54,7 @@
         } elseif($task == 'dec') {
             return $value1 - $value2;
         }
-        throw new Exception("ERROR", 1);
+        throw new Exception("NO MATCHING TASK", 1); // Just to test if there is other junk in there
     }
 
     // Use rtrim to remove new line, else we get an additional element

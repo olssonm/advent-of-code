@@ -6,22 +6,19 @@
 
     /**
      * @param  string  $puzzle
-     * @param  boolean $returnMax
+     * @param  boolean $returnGc
      * @return string
      */
     function solve(string $puzzle, bool $returnGc = false) : string
     {
-
-
         $nest = 0;
         $score = 0;
         $gc = 0;
         $type = TYPE_DEFAULT;
 
         for ($i=0; $i < strlen($puzzle); $i++) {
-            $character = $puzzle[$i];
 
-            var_dump($type);
+            $character = $puzzle[$i];
 
             if ($type == TYPE_DEFAULT) {
                 switch ($character) {

@@ -39,7 +39,6 @@
             foreach ($programs as $program2) {
                 if (in_array($program['name'], $program2['children'])) {
                     $valid = false;
-                    continue;
                 }
             }
             if ($valid) {
