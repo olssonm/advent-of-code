@@ -1,8 +1,8 @@
 <?php
 
-    const TYPE_DEFAULT = 'default';
-    const TYPE_GARBAGE = 'garbage';
-    const TYPE_IGNORE = 'ignore';
+    const TYPE_DEFAULT = 1;
+    const TYPE_GARBAGE = 2;
+    const TYPE_IGNORE = 3;
 
     /**
      * @param  string  $puzzle
